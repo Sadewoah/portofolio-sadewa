@@ -61,7 +61,7 @@ const Hero = ({ scrollToSection }) => {
                 <div className="w-72 h-72 lg:w-80 lg:h-80 bg-gray-800/50 rounded-full flex items-center justify-center backdrop-blur-sm">
                   {/* <div className="text-8xl lg:text-9xl animate-pulse">👨‍💻</div> */}
                   <img
-                    src="src\assets\images\hero.JPG"
+                    src="./src/assets/images/hero.JPG"
                     alt="Profile"
                     className="w-72 h-72 lg:w-80 lg:h-80 rounded-full object-cover"
                   />
