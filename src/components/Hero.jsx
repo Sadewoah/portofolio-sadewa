@@ -1,4 +1,5 @@
 import { Download, Eye, ArrowDown } from 'lucide-react';
+import heroImg from "../assets/images/hero.JPG";
 
 const Hero = ({ scrollToSection }) => {
   const handleDownloadCV = () => {
@@ -60,11 +61,7 @@ const Hero = ({ scrollToSection }) => {
               <div className="relative w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
                 <div className="w-72 h-72 lg:w-80 lg:h-80 bg-gray-800/50 rounded-full flex items-center justify-center backdrop-blur-sm">
                   {/* <div className="text-8xl lg:text-9xl animate-pulse">👨‍💻</div> */}
-                  <img
-                    src="./src/assets/images/hero.JPG"
-                    alt="Profile"
-                    className="w-72 h-72 lg:w-80 lg:h-80 rounded-full object-cover"
-                  />
+                  <img src={heroImg} alt="Profile" className="w-72 h-72 lg:w-80 lg:h-80 rounded-full object-cover" />
                 </div>
               </div>
               
