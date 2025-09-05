@@ -129,7 +129,7 @@ const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+{/*         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { number: '3+', label: 'Tahun Pengalaman', desc: 'Belajar di SMK' },
             { number: '15+', label: 'Proyek Selesai', desc: 'Berbagai jenis aplikasi' },
@@ -141,7 +141,7 @@ const About = () => {
               <div className="text-sm text-gray-400 font-poppins">{stat.desc}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
