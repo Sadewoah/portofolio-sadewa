@@ -139,22 +139,6 @@ const About = () => {
             </div>
           </div>
         </div>
-
-        {/* Stats Section */}
-        {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8">
-          {[
-            { number: '3+', label: 'Tahun Pengalaman', desc: 'Belajar di SMK' },
-            { number: '15+', label: 'Proyek Selesai', desc: 'Web & Design' },
-            { number: '15+', label: 'Tools Dikuasai', desc: 'Development & Design' },
-            { number: '5+', label: 'Kategori Skill', desc: 'Full Stack & Multimedia' }
-          ].map((stat, index) => (
-            <div key={index} className="text-center p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-600/50 hover:scale-105 transition-all duration-300">
-              <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2 font-poppins">{stat.number}</div>
-              <div className="text-lg font-semibold text-white mb-1 font-poppins">{stat.label}</div>
-              <div className="text-sm text-gray-400 font-poppins">{stat.desc}</div>
-            </div>
-          ))}
-        </div> */}
       </div>
     </section>
   );
