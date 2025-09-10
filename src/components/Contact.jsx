@@ -50,7 +50,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'i.sadewabharaka@gmail.com',
+      value: 'i.sadewabharakamahaputra@gmail.com',
       description: 'Kirim email untuk kerjasama',
       color: 'bg-blue-600',
       hoverColor: 'hover:bg-blue-700',

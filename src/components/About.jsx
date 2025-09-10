@@ -1,9 +1,13 @@
-import { Code, Database, Globe, Palette, Settings, Zap } from 'lucide-react';
+import { Code, Database, Globe, Palette, Settings, Zap, Camera, Edit3, Layers, Pen } from 'lucide-react';
 
 const About = () => {
   const tools = [
     { name: 'VS Code', category: 'Code Editor', icon: Code, color: 'bg-blue-600' },
     { name: 'Figma', category: 'UI/UX Design', icon: Palette, color: 'bg-purple-600' },
+    { name: 'Adobe Photoshop', category: 'Image Editing', icon: Layers, color: 'bg-blue-500' },
+    { name: 'Adobe Illustrator', category: 'Vector Design', icon: Pen, color: 'bg-orange-500' },
+    { name: 'CapCut', category: 'Video Editing', icon: Edit3, color: 'bg-pink-600' },
+    { name: 'Canva', category: 'Graphic Design', icon: Camera, color: 'bg-cyan-500' },
     { name: 'XAMPP', category: 'Development Server', icon: Database, color: 'bg-orange-600' },
     { name: 'Git & GitHub', category: 'Version Control', icon: Settings, color: 'bg-gray-600' },
     { name: 'Chrome DevTools', category: 'Debugging', icon: Globe, color: 'bg-green-600' }
@@ -15,28 +19,35 @@ const About = () => {
       color: 'text-blue-400',
       bgColor: 'bg-blue-600/20',
       borderColor: 'border-blue-400/30',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'Bootstrap']
+      skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'Tailwind CSS', 'Bootstrap', 'Responsive Design']
     },
     {
       title: 'Backend Development',
       color: 'text-green-400',
       bgColor: 'bg-green-600/20',
       borderColor: 'border-green-400/30',
-      skills: ['PHP', 'Node.js']
+      skills: ['PHP', 'Node.js', 'Express.js', 'RESTful API']
     },
     {
       title: 'Database',
       color: 'text-purple-400',
       bgColor: 'bg-purple-600/20',
       borderColor: 'border-purple-400/30',
-      skills: ['MySQL', 'MongoDB']
+      skills: ['MySQL', 'MongoDB', 'Database Design', 'SQL Queries']
     },
     {
-      title: 'Tools & Design',
+      title: 'Design & Multimedia',
+      color: 'text-pink-400',
+      bgColor: 'bg-pink-600/20',
+      borderColor: 'border-pink-400/30',
+      skills: ['Adobe Photoshop', 'Adobe Illustrator', 'Figma', 'Canva', 'CapCut', 'UI/UX Design', 'Logo Design', 'Photographer','Video Editing','Videographer']
+    },
+    {
+      title: 'Tools & Development',
       color: 'text-yellow-400',
       bgColor: 'bg-yellow-600/20',
       borderColor: 'border-yellow-400/30',
-      skills: ['GitHub', 'Canva', 'Figma', 'Adobe Photoshop']
+      skills: ['Git & GitHub', 'VS Code', 'XAMPP', 'Chrome DevTools', 'npm/yarn']
     }
   ];
 
@@ -53,15 +64,16 @@ const About = () => {
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
             <p className="text-lg text-gray-300 leading-relaxed font-poppins">
-              Saya adalah seorang website developer dengan passion yang tinggi dalam menciptakan solusi digital yang inovatif. 
+              Saya adalah seorang website developer dan designer dengan passion yang tinggi dalam menciptakan solusi digital yang inovatif. 
               Dengan pengalaman <span className="text-blue-400 font-semibold">3 tahun</span> selama menempuh pendidikan di SMK, 
-              saya telah mengembangkan berbagai macam proyek yang mengasah kemampuan teknis dan kreativitas saya dalam bidang pengembangan web.
+              saya telah mengembangkan berbagai macam proyek yang mengasah kemampuan teknis dan kreativitas saya dalam bidang 
+              pengembangan web dan desain multimedia.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed font-poppins">
-              Selama perjalanan belajar saya, saya telah menguasai berbagai teknologi web modern dan selalu bersemangat 
-              untuk mengeksplorasi tools dan framework terbaru. Saya percaya bahwa kombinasi antara technical skills 
-              yang solid dan kreativitas dalam problem-solving adalah kunci untuk menciptakan aplikasi web yang 
-              tidak hanya fungsional, tetapi juga memberikan user experience yang luar biasa.
+              Selama perjalanan belajar saya, saya telah menguasai berbagai teknologi web modern serta tools design profesional 
+              seperti Adobe Creative Suite, Figma, dan berbagai platform multimedia lainnya. Saya percaya bahwa kombinasi antara 
+              technical skills yang solid, kreativitas dalam problem-solving, dan kemampuan design adalah kunci untuk menciptakan 
+              aplikasi web yang tidak hanya fungsional, tetapi juga memberikan user experience yang luar biasa dan visual yang menarik.
             </p>
           </div>
         </div>
@@ -72,7 +84,7 @@ const About = () => {
           <div className="space-y-8">
             <h3 className="text-2xl font-bold text-blue-400 font-poppins flex items-center gap-3">
               <Settings className="text-blue-400" size={28} />
-              Tools Yang Digunakan
+              Tools & Software
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {tools.map((tool, index) => {
@@ -101,7 +113,7 @@ const About = () => {
           <div className="space-y-8">
             <h3 className="text-2xl font-bold text-blue-400 font-poppins flex items-center gap-3">
               <Code className="text-blue-400" size={28} />
-              Keahlian Teknis
+              Keahlian & Kompetensi
             </h3>
             <div className="space-y-6">
               {skillCategories.map((category, index) => (
@@ -129,19 +141,20 @@ const About = () => {
         </div>
 
         {/* Stats Section */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8">
           {[
             { number: '3+', label: 'Tahun Pengalaman', desc: 'Belajar di SMK' },
-            { number: '15+', label: 'Proyek Selesai', desc: 'Berbagai jenis aplikasi' },
-            { number: '10+', label: 'Teknologi', desc: 'Yang dikuasai' }
+            { number: '15+', label: 'Proyek Selesai', desc: 'Web & Design' },
+            { number: '15+', label: 'Tools Dikuasai', desc: 'Development & Design' },
+            { number: '5+', label: 'Kategori Skill', desc: 'Full Stack & Multimedia' }
           ].map((stat, index) => (
-            <div key={index} className="text-center p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-600/50">
+            <div key={index} className="text-center p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-xl backdrop-blur-sm border border-gray-600/50 hover:scale-105 transition-all duration-300">
               <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-2 font-poppins">{stat.number}</div>
               <div className="text-lg font-semibold text-white mb-1 font-poppins">{stat.label}</div>
               <div className="text-sm text-gray-400 font-poppins">{stat.desc}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );
