@@ -5,8 +5,8 @@ const Hero = ({ scrollToSection }) => {
   const handleDownloadCV = () => {
     // Ganti dengan path file CV Anda yang ada di folder public
     const link = document.createElement('a');
-    link.href = './public/CV.pdf';
-    link.download = 'CV-Sadewa.pdf';
+    link.href = './public/CV - Sadewa Bharaka Mahaputra.pdf';
+    link.download = 'CV - Sadewa Bharaka Mahaputra.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
