@@ -36,13 +36,13 @@ const Hero = ({ scrollToSection }) => {
 
             {/* Call to Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button 
+              {/* <button 
                 onClick={handleDownloadCV}
                 className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center gap-3 font-poppins"
               >
                 <Download size={20} className="group-hover:animate-bounce" />
                 Download CV
-              </button>
+              </button> */}
               <button 
                 onClick={() => scrollToSection('proyek')}
                 className="group border-2 border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-gray-900 px-8 py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3 font-poppins"
