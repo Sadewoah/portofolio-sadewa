@@ -1,5 +1,7 @@
 import { ExternalLink, Github, Code, Database, Globe, Camera, Image, User } from 'lucide-react';
 
+
+
 const Projects = () => {
   const projects = [
     {
@@ -41,7 +43,7 @@ const Projects = () => {
       color: 'from-pink-500 to-violet-500',
       type: 'photography',
       images: [
-        './src/assets/images/editing/HEADER CHESAPEDIA.jpg',
+        "/public/images/editing/header.jpg",
       ]
     },
     {
@@ -53,7 +55,7 @@ const Projects = () => {
       color: 'from-pink-500 to-violet-500',
       type: 'photography',
       images: [
-        './src/assets/images/editing/Invitation Card.jpg',
+        "/images/editing/invitation.jpg"
       ]
     },
     {
@@ -65,7 +67,7 @@ const Projects = () => {
       color: 'from-cyan-500 to-blue-500',
       type: 'photography',
       images: [
-        './src/assets/images/editing/banner.jpg',
+        "/images/editing/banner.jpg",
       ]
     },
       {
@@ -77,7 +79,7 @@ const Projects = () => {
     color: 'from-yellow-500 to-orange-500',
     type: 'productDesign',
     images: [
-      './src/assets/images/editing/chicken.jpg',
+      "/images/editing/chicken.jpg",
     ]
   },
   {
@@ -89,7 +91,7 @@ const Projects = () => {
     color: 'from-teal-500 to-green-500',
     type: 'productDesign',
     images: [
-      './src/assets/images/editing/potato.jpg',
+      "/images/editing/potato.jpg",
     ]
   },
   {
@@ -101,7 +103,7 @@ const Projects = () => {
     color: 'from-indigo-500 to-purple-500',
     type: 'productDesign',
     images: [
-      './src/assets/images/editing/koko.jpg',
+      "/images/editing/koko.jpg",
     ]
   },
 
@@ -115,7 +117,7 @@ const Projects = () => {
     color: 'from-red-500 to-pink-500',
     type: 'pasfoto',
     images: [
-      './src/assets/images/pasfoto/3.jpg',
+      "/images/pasfoto/3.jpg",
     ]
   }
   ];

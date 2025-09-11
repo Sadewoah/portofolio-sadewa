@@ -1,5 +1,5 @@
 import { Download, Eye, ArrowDown } from 'lucide-react';
-import heroImg from "../assets/images/hero.JPG";
+import heroImg from "/public/images/hero.JPG";
 
 const Hero = ({ scrollToSection }) => {
   const handleDownloadCV = () => {
