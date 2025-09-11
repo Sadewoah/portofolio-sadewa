@@ -43,7 +43,7 @@ const Projects = () => {
       color: 'from-pink-500 to-violet-500',
       type: 'photography',
       images: [
-        "/public/images/editing/header.jpg",
+        "/images/editing/header.jpg",
       ]
     },
     {
