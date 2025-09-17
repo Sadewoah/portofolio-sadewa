@@ -5,7 +5,7 @@ const About = () => {
     { name: 'VS Code', category: 'Code Editor', icon: Code, color: 'bg-blue-600' },
     { name: 'Figma', category: 'UI/UX Design', icon: Palette, color: 'bg-purple-600' },
     { name: 'Adobe Photoshop', category: 'Image Editing', icon: Layers, color: 'bg-blue-500' },
-    { name: 'Adobe Illustrator', category: 'Vector Design', icon: Pen, color: 'bg-orange-500' },
+    { name: 'Adobe Illustrator', category: 'Vector Elements', icon: Pen, color: 'bg-orange-500' },
     { name: 'CapCut', category: 'Video Editing', icon: Edit3, color: 'bg-pink-600' },
     { name: 'Canva', category: 'Graphic Design', icon: Camera, color: 'bg-cyan-500' },
     { name: 'XAMPP', category: 'Development Server', icon: Database, color: 'bg-orange-600' },
@@ -36,11 +36,23 @@ const About = () => {
       skills: ['MySQL', 'MongoDB', 'Database Design', 'SQL Queries']
     },
     {
-      title: 'Design & Multimedia',
+      title: 'Design & Content Creation',
       color: 'text-pink-400',
       bgColor: 'bg-pink-600/20',
       borderColor: 'border-pink-400/30',
-      skills: ['Adobe Photoshop', 'Adobe Illustrator', 'Figma', 'Canva', 'CapCut', 'UI/UX Design', 'Logo Design', 'Photographer','Video Editing','Videographer']
+      skills: [
+        'Adobe Photoshop',
+        'Adobe Illustrator (Element Design)',
+        'Figma',
+        'Canva',
+        'CapCut',
+        'UI/UX Design',
+        'Content Creation',
+        'Social Media Content',
+        'Poster Design',
+        'Banner Design',
+        'Pamphlet Design'
+      ]
     },
     {
       title: 'Tools & Development',
@@ -64,16 +76,17 @@ const About = () => {
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
             <p className="text-lg text-gray-300 leading-relaxed font-poppins">
-              Saya adalah seorang website developer dan designer dengan passion yang tinggi dalam menciptakan solusi digital yang inovatif. 
-              Dengan pengalaman <span className="text-blue-400 font-semibold">3 tahun</span> selama menempuh pendidikan di SMK, 
-              saya telah mengembangkan berbagai macam proyek yang mengasah kemampuan teknis dan kreativitas saya dalam bidang 
-              pengembangan web dan desain multimedia.
+              Saya adalah lulusan <span className="text-blue-400 font-semibold">SMK TI Bali Global Denpasar jurusan Rekayasa Perangkat Lunak</span>, 
+              berpengalaman dalam berbagai proyek digital dan membangun <span className="text-blue-400 font-semibold">website yang responsif</span>. 
+              Saya memiliki keterampilan dasar dalam menggunakan berbagai software editing, serta mampu beradaptasi dengan mudah di dunia 
+              <span className="text-blue-400 font-semibold"> media sosial</span> yang terus berkembang.
             </p>
             <p className="text-lg text-gray-300 leading-relaxed font-poppins">
-              Selama perjalanan belajar saya, saya telah menguasai berbagai teknologi web modern serta tools design profesional 
-              seperti Adobe Creative Suite, Figma, dan berbagai platform multimedia lainnya. Saya percaya bahwa kombinasi antara 
-              technical skills yang solid, kreativitas dalam problem-solving, dan kemampuan design adalah kunci untuk menciptakan 
-              aplikasi web yang tidak hanya fungsional, tetapi juga memberikan user experience yang luar biasa dan visual yang menarik.
+              Saya ingin menciptakan sesuatu yang besar dan membawa perubahan di masa depan. 
+              Bagi saya, dunia digital dan kreatif adalah langkah awal untuk mewujudkan hal tersebut. 
+              Dengan semangat belajar yang tinggi, saya terbuka terhadap masukan dan tantangan baru agar terus berkembang, 
+              baik sebagai <span className="text-blue-400 font-semibold">individu kreatif</span> maupun 
+              <span className="text-blue-400 font-semibold"> kolaborator dalam tim</span>.
             </p>
           </div>
         </div>
