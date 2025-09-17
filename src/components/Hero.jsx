@@ -31,7 +31,7 @@ const Hero = ({ scrollToSection }) => {
             </div>
 
             <p className="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-poppins">
-              Saya mempunyai ketertarikan dalam bidang Programing dan Designer, terutama pada pembuatan Website dan Desain seperti Poster, Pamflet serta Banner. Ketertarikan pada bidang ini sudah berlangsung lebih dari 3 tahun untuk semua bidang.
+              Lulusan SMK TI Bali Global Denpasar jurusan Rekayasa Perangkat Lunak, berpengalaman dalam membangun website responsif dan berbagai proyek digital. Saya adalah pribadi yang kreatif, fleksibel, dan bertanggung jawab, siap beradaptasi dengan dunia industri kreatif yang terus berkembang.
             </p>
 
             {/* Call to Action Buttons */}
