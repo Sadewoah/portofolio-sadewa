@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creative Agency — Where Ideas Meet Execution</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'DM Sans', 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #fafafa;
+      color: #1a1a1a;
+    }
+
+    /* Smooth Cursor */
+    .cursor {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(26, 26, 26, 0.3);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor.hover {
+      width: 60px;
+      height: 60px;
+      background: rgba(26, 26, 26, 0.05);
+      border-color: #1a1a1a;
+    }
+
+    /* Hero Video Background */
+    .hero-video-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-video-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(250, 250, 250, 0.3);
+      z-index: 1;
+    }
+
+    .hero-video-container video,
+    .hero-video-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.2);
+      opacity: 0.4;
+    }
+
+    /* Fade In Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stagger delays */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+
+    /* Minimal Button */
+    .btn-minimal {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn-minimal::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #1a1a1a;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn-minimal:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Card Hover */
+    .card-hover {
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Image Reveal */
+    .img-reveal {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .img-reveal::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #fafafa;
+      z-index: 2;
+      transform-origin: left;
+      animation: imgReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+
+    @keyframes imgReveal {
+      0% { transform: scaleX(1); }
+      50% { transform: scaleX(1); transform-origin: left; }
+      51% { transform-origin: right; }
+      100% { transform: scaleX(0); }
+    }
+
+    .img-reveal img {
+      transform: scale(1.2);
+      animation: imgZoom 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+
+    @keyframes imgZoom {
+      to { transform: scale(1); }
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(20px);
+      transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(250, 250, 250, 0.9);
+      border-bottom: 1px solid rgba(26, 26, 26, 0.06);
+    }
+
+    /* Text Selection */
+    ::selection {
+      background: #1a1a1a;
+      color: #fafafa;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Work Grid Animation */
+    .work-grid-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .work-grid-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Service Number */
+    .service-number {
+      font-size: 120px;
+      font-weight: 900;
+      opacity: 0.05;
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      line-height: 1;
+    }
+
+    /* Hover Image Scale */
+    .hover-scale {
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer Fade */
+    .footer-fade {
+      background: linear-gradient(to bottom, #fafafa 0%, #f0f0f0 100%);
+    }
+
+    /* Marquee */
+    .marquee {
+      display: flex;
+      overflow: hidden;
+      user-select: none;
+      gap: 4rem;
+    }
+
+    .marquee-content {
+      flex-shrink: 0;
+      display: flex;
+      gap: 4rem;
+      min-width: 100%;
+      animation: scroll 30s linear infinite;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .service-number { font-size: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+
+  <!-- Navbar -->
+  <header class="navbar fixed top-0 w-full z-50">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-6 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold tracking-tight hover-cursor">
+        CA
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-10 text-sm font-medium">
+        <a href="#work" class="hover:opacity-50 transition hover-cursor">Work</a>
+        <a href="#services" class="hover:opacity-50 transition hover-cursor">Services</a>
+        <a href="#about" class="hover:opacity-50 transition hover-cursor">About</a>
+        <a href="#contact" class="hover:opacity-50 transition hover-cursor">Contact</a>
+      </nav>
+
+      <a href="#contact" class="text-sm font-medium hover:opacity-50 transition hover-cursor">
+        Let's talk →
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="hero-video-container">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80" alt="Creative workspace" />
+    </div>
+    
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12 py-32 relative z-10">
+      <div class="max-w-5xl">
+        <div class="fade-in delay-1 mb-4">
+          <span class="inline-block px-4 py-1 text-xs font-medium tracking-wider border border-black/10 rounded-full">
+            CREATIVE AGENCY
+          </span>
+        </div>
+
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.95] tracking-tight mb-8">
+          <div class="fade-in delay-2">We create</div>
+          <div class="fade-in delay-3">digital</div>
+          <div class="fade-in delay-4 italic">experiences</div>
+        </h1>
+
+        <p class="text-lg md:text-xl text-black/60 max-w-2xl mb-12 fade-in delay-5">
+          A creative studio specializing in brand identity, digital marketing, and visual storytelling that drives meaningful results.
+        </p>
+
+        <div class="flex flex-wrap gap-6 fade-in delay-6">
+          <a href="#work" class="group px-8 py-4 bg-black text-white rounded-full text-sm font-medium hover:bg-black/90 transition hover-cursor">
+            View our work
+          </a>
+          <a href="#contact" class="btn-minimal px-8 py-4 text-sm font-medium hover-cursor">
+            Start a project
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 fade-in delay-6">
+      <div class="flex flex-col items-center gap-2 text-xs tracking-widest text-black/40">
+        <span>SCROLL</span>
+        <div class="w-[1px] h-12 bg-black/20 animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Section -->
+  <section class="py-12 border-y border-black/5 bg-white">
+    <div class="marquee">
+      <div class="marquee-content">
+        <span class="text-sm font-medium tracking-wider text-black/30">BRAND IDENTITY</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">DIGITAL MARKETING</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">SOCIAL MEDIA</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">CREATIVE PRODUCTION</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span class="text-sm font-medium tracking-wider text-black/30">BRAND IDENTITY</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">DIGITAL MARKETING</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">SOCIAL MEDIA</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">CREATIVE PRODUCTION</span>
+        <span class="text-sm font-medium tracking-wider text-black/30">•</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-32 md:py-40">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <!-- Text -->
+        <div class="space-y-8 lg:sticky lg:top-32">
+          <div>
+            <span class="text-xs font-medium tracking-widest text-black/40 mb-4 block">WHO WE ARE</span>
+            <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+              Crafting digital experiences that matter
+            </h2>
+            <p class="text-lg text-black/60 leading-relaxed">
+              We're a team of creative strategists, designers, and storytellers passionate about transforming brands through innovative solutions.
+            </p>
+          </div>
+
+          <div class="pt-8 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center flex-shrink-0 text-white">
+                01
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg mb-2">Strategic Approach</h4>
+                <p class="text-black/60 text-sm leading-relaxed">Data-driven insights combined with creative excellence to deliver measurable results.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center flex-shrink-0 text-white">
+                02
+              </div>
+              <div>
+                <h4 class="font-semibold text-lg mb-2">Results-Driven</h4>
+                <p class="text-black/60 text-sm leading-relaxed">Every project aligned with your business goals and designed for maximum impact.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="img-reveal rounded-3xl overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+            alt="Creative team"
+            class="w-full h-[600px] object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-32 md:py-40 bg-white">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+      <div class="mb-20">
+        <span class="text-xs font-medium tracking-widest text-black/40 mb-4 block">WHAT WE DO</span>
+        <h2 class="text-4xl md:text-5xl font-bold">Our Services</h2>
+      </div>
+
+      <div class="space-y-1">
+        <!-- Service 1 -->
+        <div class="group relative border-t border-black/5 py-12 hover:bg-black/[0.02] transition-all duration-500 card-hover hover-cursor">
+          <div class="service-number">01</div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="md:col-span-4">
+              <h3 class="text-3xl md:text-4xl font-bold mb-2">Social Media Management</h3>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-black/60 mb-6">Build and grow your brand presence across all social platforms with strategic content and engagement.</p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Content Strategy</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Copywriting</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Analytics</span>
+              </div>
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+              <span class="text-4xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="group relative border-t border-black/5 py-12 hover:bg-black/[0.02] transition-all duration-500 card-hover hover-cursor">
+          <div class="service-number">02</div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="md:col-span-4">
+              <h3 class="text-3xl md:text-4xl font-bold mb-2">Creative Design</h3>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-black/60 mb-6">Distinctive visual identities that capture your brand essence and resonate with audiences.</p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Brand Identity</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Logo Design</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Guidelines</span>
+              </div>
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+              <span class="text-4xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="group relative border-t border-black/5 py-12 hover:bg-black/[0.02] transition-all duration-500 card-hover hover-cursor">
+          <div class="service-number">03</div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="md:col-span-4">
+              <h3 class="text-3xl md:text-4xl font-bold mb-2">Creative Production</h3>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-black/60 mb-6">Professional photo and video content that tells your brand story with cinematic quality.</p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Photography</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Videography</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Editing</span>
+              </div>
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+              <span class="text-4xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="group relative border-t border-b border-black/5 py-12 hover:bg-black/[0.02] transition-all duration-500 card-hover hover-cursor">
+          <div class="service-number">04</div>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="md:col-span-4">
+              <h3 class="text-3xl md:text-4xl font-bold mb-2">Digital Advertisement</h3>
+            </div>
+            <div class="md:col-span-6">
+              <p class="text-black/60 mb-6">Data-driven campaigns that maximize ROI and deliver measurable results across platforms.</p>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Meta Ads</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">Google Ads</span>
+                <span class="px-3 py-1 text-xs border border-black/10 rounded-full">TikTok Ads</span>
+              </div>
+            </div>
+            <div class="md:col-span-2 flex justify-end">
+              <span class="text-4xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="py-32 md:py-40">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+      <div class="mb-20">
+        <span class="text-xs font-medium tracking-widest text-black/40 mb-4 block">PORTFOLIO</span>
+        <h2 class="text-4xl md:text-5xl font-bold">Selected Work</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Work 1 -->
+        <div class="work-grid-item group hover-cursor">
+          <div class="rounded-3xl overflow-hidden mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1200&q=80" 
+              class="w-full h-[500px] object-cover hover-scale"
+              alt="Brand Identity"
+            />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="text-2xl font-semibold mb-2">Brand Identity</h4>
+              <p class="text-black/50 text-sm">Corporate Branding</p>
+            </div>
+            <span class="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </div>
+        </div>
+
+        <!-- Work 2 -->
+        <div class="work-grid-item group hover-cursor">
+          <div class="rounded-3xl overflow-hidden mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=1200&q=80" 
+              class="w-full h-[500px] object-cover hover-scale"
+              alt="Social Campaign"
+            />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="text-2xl font-semibold mb-2">Social Campaign</h4>
+              <p class="text-black/50 text-sm">Digital Marketing</p>
+            </div>
+            <span class="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </div>
+        </div>
+
+        <!-- Work 3 -->
+        <div class="work-grid-item group hover-cursor">
+          <div class="rounded-3xl overflow-hidden mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1515165562835-cb47f5f2b5c3?auto=format&fit=crop&w=1200&q=80" 
+              class="w-full h-[500px] object-cover hover-scale"
+              alt="Video Production"
+            />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="text-2xl font-semibold mb-2">Video Production</h4>
+              <p class="text-black/50 text-sm">Commercial Ads</p>
+            </div>
+            <span class="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </div>
+        </div>
+
+        <!-- Work 4 -->
+        <div class="work-grid-item group hover-cursor">
+          <div class="rounded-3xl overflow-hidden mb-6">
+            <img 
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" 
+              class="w-full h-[500px] object-cover hover-scale"
+              alt="Product Photography"
+            />
+          </div>
+          <div class="flex justify-between items-start">
+            <div>
+              <h4 class="text-2xl font-semibold mb-2">Product Photography</h4>
+              <p class="text-black/50 text-sm">E-commerce</p>
+            </div>
+            <span class="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="py-32 md:py-40 bg-white">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+      <div class="max-w-5xl mx-auto text-center space-y-8">
+        <h2 class="text-5xl md:text-7xl font-bold leading-tight">
+          Ready to create<br/>something amazing?
+        </h2>
+        <p class="text-xl text-black/60 max-w-2xl mx-auto">
+          Let's discuss your project and bring your vision to life
+        </p>
+        <div class="flex flex-wrap justify-center gap-6 pt-8">
+          <a href="mailto:hello@creative.agency" class="px-10 py-5 bg-black text-white rounded-full font-medium hover:bg-black/90 transition hover-cursor">
+            Start a project
+          </a>
+          <a href="#about" class="btn-minimal px-10 py-5 font-medium hover-cursor">
+            Learn more
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-fade py-20 border-t border-black/5">
+    <div class="max-w-[1600px] mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Creative Agency</h3>
+          <p class="text-sm text-black/50 leading-relaxed">
+            Where ideas meet execution. Creating digital experiences that matter since 2020.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="text-sm font-semibold mb-4 tracking-wider">SERVICES</h4>
+          <ul class="space-y-2 text-sm text-black/60">
+            <li><a href="#" class="hover:text-black transition">Social Media</a></li>
+            <li><a href="#" class="hover:text-black transition">Creative Design</a></li>
+            <li><a href="#" class="hover:text-black transition">Production</a></li>
+            <li><a href="#" class="hover:text-black transition">Advertisement</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-sm font-semibold mb-4 tracking-wider">CONNECT</h4>
+          <ul class="space-y-2 text-sm text-black/60">
+            <li><a href="#" class="hover:text-black transition">Instagram</a></li>
+            <li><a href="#" class="hover:text-black transition">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-black transition">Behance</a></li>
+            <li><a href="#" class="hover:text-black transition">hello@creative.agency</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-black/40">
+        <p>© 2025 Creative Agency. All rights reserved.</p>
+        <p>Denpasar, Bali — Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const cursor = document.querySelector('.cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover effect
+    const hoverElements = document.querySelectorAll('.hover-cursor');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Work grid animation
+    const workItems = document.querySelectorAll('.work-grid-item');
+    const workObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 100);
+          workObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    });
+
+    workItems.forEach(item => workObserver.observe(item));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Image reveal animation on scroll
+    const imgReveals = document.querySelectorAll('.img-reveal');
+    const imgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          imgObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    imgReveals.forEach(img => {
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.6s ease';
+      imgObserver.observe(img);
+    });
+  </script>
+
+</body>
+</html>
